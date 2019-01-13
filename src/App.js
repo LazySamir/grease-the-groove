@@ -122,18 +122,21 @@ class App extends Component {
 
 
           <input
+            name="excerciseInputBox"
             type="text"
             placeholder="Excercise Name"
             value={this.state.newEx}
             onChange={e => this.updateInput("newEx", e.target.value)}
           />
           <input
+            name="maxRepsInputBox"
             type="number"
             placeholder="Max Reps"
             value={this.state.newRep}
             onChange={e => this.updateInput("newRep", e.target.value)}
           />
           <button
+          name="addButton"
             onClick={() => this.addItem()}
             disabled={!this.state.newEx.length || !this.state.newRep.length}
           >&#43; Add
