@@ -77,7 +77,7 @@ class App extends Component {
   addItem() {
     // create a new item
     const newItem = {
-      id: 1 + this.guidGenerator(),
+      id: this.guidGenerator(),
       value: this.state.newEx + " " + this.state.newRep
     };
 
