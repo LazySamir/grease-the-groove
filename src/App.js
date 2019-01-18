@@ -67,10 +67,17 @@ class App extends Component {
     this.setState({ [key]: value });
   }
 
+  guidGenerator() {
+    var S4 = function() {
+      return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    }
+    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+  }
+
   addItem() {
     // create a new item
     const newItem = {
-      id: 1 + Math.random(),
+      id: 1 + this.guidGenerator(),
       value: this.state.newEx + " " + this.state.newRep
     };
 
