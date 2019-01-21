@@ -113,6 +113,7 @@ class AddExercise extends React.Component {
 
           <input
             name="excerciseInputBox"
+            autoFocus
             type="text"
             placeholder="Excercise Name"
             value={this.state.newEx}
@@ -126,7 +127,7 @@ class AddExercise extends React.Component {
             onChange={e => this.updateInput("newRep", e.target.value)}
           />
           <button
-          name="addButton"
+            name="addButton"
             onClick={() => this.addItem()}
             disabled={!this.state.newEx.length || !this.state.newRep.length}
           >&#43; Add

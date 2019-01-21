@@ -1,7 +1,11 @@
-describe('When visiting app', function() {
-  it('App loads correctly', function() {
-  	cy.visit('http://localhost:3000') 
+describe('Exercise input form', function() {
+  it('loads correctly', function() {
+  	cy.visit('http://localhost:3000')
     cy.contains('Add a new excercise and max reps')
+  })
+  it('focuses on exercise form', function() {
+  	cy.visit('http://localhost:3000')
+    cy.get('[name="excerciseInputBox"]').focus()
   })
   describe('When adding a new excericise', function(){
 	  it('The Excercise input box accepts text', function(){
