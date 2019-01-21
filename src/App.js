@@ -109,14 +109,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div
-          style={{
-            padding: 50,
-            textAlign: "left",
-            maxWidth: 500,
-            margin: "auto"
-          }}
-        >
+        <div className="App-entry">
           Add a new excercise and max reps
           <br />
 
@@ -141,7 +134,7 @@ class App extends Component {
             disabled={!this.state.newEx.length || !this.state.newRep.length}
           >&#43; Add
           </button>
-          
+
           <br /> <br />
           <ul>
             {this.state.list.map(item => {
