@@ -4,3 +4,35 @@
   maxWidth: 500px;
   margin: "auto"
 }
+
+.exercise {
+  font-size: 1.3em;
+  font-weight: 500;
+  border-radius: 2px;
+  border: 1px solid #272727;
+  cursor: pointer;
+}
+
+.maxReps {
+  font-size: 1.3em;
+  font-weight: 500;
+  border-radius: 2px;
+  border: 1px solid #272727;
+  cursor: pointer;
+}
+
+.add {
+  font-size: 1.3em;
+  font-weight: 500;
+  border-radius: 2px;
+  border: 1px solid #272727;
+  cursor: pointer;
+}
+
+.delete {
+  font-size: 1.3em;
+  font-weight: 500;
+  border-radius: 2px;
+  border: 1px solid #272727;
+  cursor: pointer;
+}

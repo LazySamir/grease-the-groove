@@ -1,1 +1,7 @@
-
+body {
+  background-image: url("background.jpg");
+  font-family: 'Helvetica';
+  font-size: 20px;
+  color: white;
+  background-size: 100%;
+}

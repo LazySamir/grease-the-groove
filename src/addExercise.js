@@ -113,6 +113,7 @@ class AddExercise extends React.Component {
 
           <input
             name="excerciseInputBox"
+            className="exercise"
             autoFocus
             type="text"
             placeholder="Excercise Name"
@@ -121,6 +122,7 @@ class AddExercise extends React.Component {
           />
           <input
             name="maxRepsInputBox"
+            className="maxReps"
             type="number"
             placeholder="Max Reps"
             value={this.state.newRep}
@@ -128,6 +130,7 @@ class AddExercise extends React.Component {
           />
           <button
             name="addButton"
+            className="add"
             onClick={() => this.addItem()}
             disabled={!this.state.newEx.length || !this.state.newRep.length}
           >&#43; Add
@@ -137,12 +140,15 @@ class AddExercise extends React.Component {
           <ul>
             {this.state.list.map(item => {
               return (
-                <li key={item.id}>
-                  {item.value}
-                  <button onClick={() => this.deleteItem(item.id)}>
-                    Remove
+                <ul key={item.id}>
+
+                  <button
+                    className="delete"
+                    onClick={() => this.deleteItem(item.id)}>
+                    x
                   </button>
-                </li>
+                  {item.value}
+                </ul>
               );
             })}
           </ul>
