@@ -1,9 +1,7 @@
-import React, { Component } from "react";
-import "./App.css";
-import AddExercise from './addExercise'
+import React from "react";
+import "./addExercise.css";
 
-class App extends Component {
-
+class AddExercise extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,17 +66,10 @@ class App extends Component {
     this.setState({ [key]: value });
   }
 
-  guidGenerator() {
-    var S4 = function() {
-      return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
-    }
-    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
-  }
-
   addItem() {
     // create a new item
     const newItem = {
-      id: this.guidGenerator(),
+      id: 1 + Math.random(),
       value: this.state.newEx + " " + this.state.newRep
     };
 
@@ -114,11 +105,51 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <AddExercise />
+      <div className="App">
+        <div className="App-entry">
+          Add a new excercise and max reps
+          <br />
+
+
+          <input
+            name="excerciseInputBox"
+            autoFocus
+            type="text"
+            placeholder="Excercise Name"
+            value={this.state.newEx}
+            onChange={e => this.updateInput("newEx", e.target.value)}
+          />
+          <input
+            name="maxRepsInputBox"
+            type="number"
+            placeholder="Max Reps"
+            value={this.state.newRep}
+            onChange={e => this.updateInput("newRep", e.target.value)}
+          />
+          <button
+            name="addButton"
+            onClick={() => this.addItem()}
+            disabled={!this.state.newEx.length || !this.state.newRep.length}
+          >&#43; Add
+          </button>
+
+          <br /> <br />
+          <ul>
+            {this.state.list.map(item => {
+              return (
+                <li key={item.id}>
+                  {item.value}
+                  <button onClick={() => this.deleteItem(item.id)}>
+                    Remove
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+export default AddExercise;
