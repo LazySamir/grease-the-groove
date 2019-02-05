@@ -1,8 +1,21 @@
+.App {
+  padding: 20px;
+  max-width: 350px;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 0 0 10px rgba(0,0,0,0.1);
+}
+
 .App-entry {
-  padding: 50px;
+  padding: 40px;
   textAlign: "left";
   maxWidth: 500px;
   margin: "auto"
+}
+
+h2 {
+  text-align: center;
+  margin: 0;
+  font-weight: 200;
 }
 
 .exercise {
@@ -35,4 +48,11 @@
   border-radius: 2px;
   border: 1px solid #272727;
   cursor: pointer;
+}
+
+.exerciseList {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  list-style: none;
 }

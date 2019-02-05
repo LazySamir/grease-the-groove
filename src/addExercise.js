@@ -107,7 +107,7 @@ class AddExercise extends React.Component {
     return (
       <div className="App">
         <div className="App-entry">
-          Add a new excercise and max reps
+          <h2> Add a new excercise and max reps </h2>
           <br />
 
 
@@ -140,8 +140,7 @@ class AddExercise extends React.Component {
           <ul>
             {this.state.list.map(item => {
               return (
-                <ul key={item.id}>
-
+                <ul key={item.id} className="exerciseList">
                   <button
                     className="delete"
                     onClick={() => this.deleteItem(item.id)}>
