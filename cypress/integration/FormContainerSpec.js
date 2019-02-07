@@ -1,4 +1,5 @@
 describe('Exercise input form', function() {
+
   it('loads correctly', function() {
   	cy.visit('http://localhost:3000')
     cy.contains('Add a new excercise and max reps')
@@ -33,8 +34,10 @@ describe('Exercise input form', function() {
     })
   })
   describe('Exercise remove button', function() {
-    xit('removes the associated exercise when clicked', function(){
-
+    it('removes the associated exercise when clicked', function(){
+      cy.get('[name="PullupTest 1"]')
+        .click()
+        .should('not.exist')
     })
   })
 })
