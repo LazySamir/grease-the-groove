@@ -21,9 +21,7 @@ class FormContainer extends Component {
 
   componentDidMount() {
     this.hydrateStateWithLocalStorage();
-
-    // add event listener to save state to localStorage
-    // when user leaves/refreshes the page
+    // save to localStorage on leave or refresh
     window.addEventListener(
       "beforeunload",
       this.saveStateToLocalStorage.bind(this)
@@ -35,7 +33,6 @@ class FormContainer extends Component {
         "beforeunload",
         this.saveStateToLocalStorage.bind(this)
       );
-
       // saves if component has a chance to unmount
       this.saveStateToLocalStorage();
   }
@@ -86,32 +83,9 @@ class FormContainer extends Component {
       }), () => console.log(this.state.exercise))
   }
 
-  // handleInput(e) {
-  //      let value = e.target.value;
-  //      let name = e.target.name;
-  //  this.setState( prevState => ({ exercise :
-  //       {...prevState.exercise, [name]: value
-  //       }
-  //     }), () => console.log(this.state.exercise))
-  // }
-
   handleFormSubmit(e) {
     e.preventDefault();
-    // let userData = this.state.exercise;
-    //
-    // fetch('http://example.com',{
-    //     method: "POST",
-    //     body: JSON.stringify(userData),
-    //     headers: {
-    //       'Accept': 'application/json',
-    //       'Content-Type': 'application/json'
-    //     },
-    //   }).then(response => {
-    //     response.json().then(data =>{
-    //       console.log("Successful" + data);
-    //     })
-    // })
-    // create a new item
+
     const newItem = {
       id: 1 + Math.random(),
       value: this.state.exercise.name + " " + this.state.exercise.reps
