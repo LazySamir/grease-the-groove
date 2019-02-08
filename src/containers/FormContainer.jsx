@@ -1,21 +1,27 @@
-import React from "react";
-import "./addExercise.css";
+import React, {Component} from 'react';
 
-class AddExercise extends React.Component {
+/* Import Components */
+import Input from '../components/Input';
+import Button from '../components/Button'
+
+class FormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newEx: "",
-      newRep:"",
-      list: []
-    };
+      list: [],
+      exercise: {
+        name: '',
+        reps: ''
+      }
+    }
+    this.handleReps = this.handleReps.bind(this);
+    this.handleExercise = this.handleExercise.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   componentDidMount() {
     this.hydrateStateWithLocalStorage();
-
-    // add event listener to save state to localStorage
-    // when user leaves/refreshes the page
+    // save to localStorage on leave or refresh
     window.addEventListener(
       "beforeunload",
       this.saveStateToLocalStorage.bind(this)
@@ -27,7 +33,6 @@ class AddExercise extends React.Component {
         "beforeunload",
         this.saveStateToLocalStorage.bind(this)
       );
-
       // saves if component has a chance to unmount
       this.saveStateToLocalStorage();
   }
@@ -60,17 +65,30 @@ class AddExercise extends React.Component {
     }
   }
 
+  /* This lifecycle hook gets executed when the component mounts */
 
-  updateInput(key, value) {
-    // update react state
-    this.setState({ [key]: value });
+  handleExercise(e) {
+   let value = e.target.value;
+   this.setState( prevState => ({ exercise :
+        {...prevState.exercise, name: value
+        }
+      }), () => console.log(this.state.exercise))
   }
 
-  addItem() {
-    // create a new item
+  handleReps(e) {
+       let value = e.target.value;
+   this.setState( prevState => ({ exercise :
+        {...prevState.exercise, reps: value
+        }
+      }), () => console.log(this.state.exercise))
+  }
+
+  handleFormSubmit(e) {
+    e.preventDefault();
+
     const newItem = {
       id: 1 + Math.random(),
-      value: this.state.newEx + " " + this.state.newRep
+      value: this.state.exercise.name + " " + this.state.exercise.reps
     };
 
     // copy current list of items
@@ -78,19 +96,22 @@ class AddExercise extends React.Component {
 
     // add the new item to the list
     list.push(newItem);
+    console.log(newItem)
 
     // update state with new list, reset the new item input
+    console.log("updating state")
     this.setState({
       list,
-      newEx: "",
-      newRep:""
+      exercise: {
+        name: '',
+        reps: ''
+      }
     });
 
     // update localStorage
     localStorage.setItem("list", JSON.stringify(list));
     localStorage.setItem("newItem", "");
   }
-
   deleteItem(id) {
     // copy current list of items
     const list = [...this.state.list];
@@ -105,46 +126,46 @@ class AddExercise extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-entry">
-          <h2> Add a new excercise and max reps </h2>
-          <br />
-
-
-          <input
-            name="excerciseInputBox"
-            className="exercise"
-            autoFocus
-            type="text"
-            placeholder="Excercise Name"
-            value={this.state.newEx}
-            onChange={e => this.updateInput("newEx", e.target.value)}
+      <div>
+        <form className="container-fluid" onSubmit={this.handleFormSubmit}>
+          <h3>Add a new excercise and max reps</h3>
+          <Input
+            type={'text'}
+            title= {'Exercise Name'}
+            autofocus="true"
+            name= {'exercise'}
+            value={this.state.exercise.name}
+            placeholder = {'Enter an exercise'}
+            handleChange = {this.handleExercise}
           />
-          <input
-            name="maxRepsInputBox"
-            className="maxReps"
-            type="number"
-            placeholder="Max Reps"
-            value={this.state.newRep}
-            onChange={e => this.updateInput("newRep", e.target.value)}
-          />
-          <button
-            name="addButton"
-            className="add"
-            onClick={() => this.addItem()}
-            disabled={!this.state.newEx.length || !this.state.newRep.length}
-          >&#43; Add
-          </button>
 
-          <br /> <br />
+          <Input
+            type={'number'}
+            name={'reps'}
+            title= {'Max Reps'}
+            value={this.state.exercise.reps}
+            placeholder = {'Enter your age'}
+            handleChange={this.handleReps}
+          />
+
+          <Button
+            action = {this.handleFormSubmit}
+            type = {'primary'}
+            name = {'add'}
+            title = {'+Add'}
+          />
+        </form>
+        <div>
           <ul>
             {this.state.list.map(item => {
               return (
-                <ul key={item.id} className="exerciseList">
+                <li key={item.id}>
+                  {item.value}
                   <button
-                    className="delete"
-                    onClick={() => this.deleteItem(item.id)}>
-                    x
+                    onClick={() => this.deleteItem(item.id)}
+                    name={item.value}
+                    >
+                    Remove
                   </button>
                   {item.value}
                 </ul>
@@ -157,4 +178,4 @@ class AddExercise extends React.Component {
   }
 }
 
-export default AddExercise;
+export default FormContainer;
