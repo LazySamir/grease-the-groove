@@ -162,12 +162,13 @@ class FormContainer extends Component {
                 <li key={item.id}>
                   {item.value}
                   <button
-                  onClick={() => this.deleteItem(item.id)}
-                  name={item.value}
-                  >
+                    onClick={() => this.deleteItem(item.id)}
+                    name={item.value}
+                    >
                     Remove
                   </button>
-                </li>
+                  {item.value}
+                </ul>
               );
             })}
           </ul>
