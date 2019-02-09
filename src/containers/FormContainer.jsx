@@ -168,7 +168,7 @@ class FormContainer extends Component {
                     Remove
                   </button>
                   {item.value}
-                </ul>
+                </li>
               );
             })}
           </ul>
